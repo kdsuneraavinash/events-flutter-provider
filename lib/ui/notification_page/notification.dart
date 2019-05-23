@@ -1,5 +1,7 @@
+import 'package:events/theme/theme_controller.dart';
 import 'package:events/views/notification.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NotificationItem extends StatelessWidget {
   final NotificationView notificationView;
@@ -40,10 +42,11 @@ class NotificationItem extends StatelessWidget {
     return TextSpan(
       text: text,
       style: TextStyle(
-          fontWeight: FontWeight.w800,
-          color: notificationView.isRead
-              ? Colors.grey
-              : Theme.of(context).accentColor),
+        fontWeight: FontWeight.w800,
+        color: notificationView.isRead
+            ? Theme.of(context).disabledColor
+            : Provider.of<ThemeController>(context).theme.iconColor,
+      ),
     );
   }
 }

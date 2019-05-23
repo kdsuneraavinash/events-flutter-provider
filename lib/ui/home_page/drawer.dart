@@ -1,7 +1,9 @@
+import 'package:events/theme/theme_controller.dart';
 import 'package:events/ui/notification_page/notification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:provider/provider.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -42,7 +44,8 @@ class AppDrawer extends StatelessWidget {
       String subtitle,
       VoidCallback onPressed}) {
     return ListTile(
-      leading: Icon(icon, color: Theme.of(context).accentColor),
+      leading: Icon(icon,
+          color: Provider.of<ThemeController>(context).theme.iconColor),
       title: Text(title),
       subtitle: Text(subtitle),
       onTap: onPressed,

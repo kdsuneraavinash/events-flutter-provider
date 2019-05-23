@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:events/theme/theme.dart';
+import 'package:events/theme/theme_controller.dart';
 import 'package:events/ui/event_page/event_page.dart';
 import 'package:events/views/event.dart';
 import 'package:flutter/material.dart';
@@ -94,14 +94,14 @@ class EventCard extends StatelessWidget {
 
   Widget _buildTimeDateStrip(BuildContext context) {
     return Container(
-      color: PrefferedThemeProvider.of(context).theme.accentColor,
+      color: Provider.of<ThemeController>(context).theme.accentColor,
       padding: EdgeInsets.all(4.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Icon(
             Icons.timer,
-            color: PrefferedThemeProvider.of(context)
+            color: Provider.of<ThemeController>(context)
                 .theme
                 .eventCardTimeTextTheme
                 .color,
@@ -111,7 +111,7 @@ class EventCard extends StatelessWidget {
             "Starts on ${eventView.startDate}",
             textAlign: TextAlign.end,
             style:
-                PrefferedThemeProvider.of(context).theme.eventCardTimeTextTheme,
+                Provider.of<ThemeController>(context).theme.eventCardTimeTextTheme,
           ),
         ],
       ),
@@ -123,11 +123,11 @@ class EventCard extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 8.0),
       child: ListTile(
         title: Text(eventView.name,
-            style: PrefferedThemeProvider.of(context)
+            style: Provider.of<ThemeController>(context)
                 .theme
                 .eventCardTitleTextTheme),
         subtitle: Text(eventView.organizer,
-            style: PrefferedThemeProvider.of(context)
+            style: Provider.of<ThemeController>(context)
                 .theme
                 .eventCardTitleTextTheme),
       ),

@@ -1,3 +1,4 @@
+import 'package:events/theme/theme_controller.dart';
 import 'package:events/views/event.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -61,7 +62,8 @@ class EventDetails extends StatelessWidget {
     return ListTile(
       title: Text(title),
       subtitle: Text(subtitle),
-      leading: Icon(icon, color: Theme.of(context).accentColor),
+      leading: Icon(icon,
+          color: Provider.of<ThemeController>(context).theme.iconColor),
     );
   }
 }
