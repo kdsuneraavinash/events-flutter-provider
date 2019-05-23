@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:events/theme/theme_controller.dart';
 import 'package:events/ui/event_page/event_page.dart';
+import 'package:events/ui/event_page/interested_pin.dart';
 import 'package:events/views/event.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,6 +17,7 @@ class EventCard extends StatelessWidget {
     return GestureDetector(
       onTap: () => _handleEventCardOnTap(context),
       child: Card(
+        key: Key(eventView.name),
         elevation: 8.0,
         child: ClipRRect(
           clipBehavior: Clip.antiAlias,
@@ -40,27 +42,30 @@ class EventCard extends StatelessWidget {
     return Stack(
       alignment: Alignment.bottomRight,
       children: <Widget>[
-        CachedNetworkImage(
-          /// Image
-          imageUrl: eventView.coverImageUrl,
-          fit: BoxFit.cover,
-          height: height,
-          width: width,
-          placeholder: (_, __) => Container(
-                width: width,
-                height: height,
-                alignment: Alignment.center,
-                child: CircularProgressIndicator(),
-              ),
-          errorWidget: (_, __, ___) => Container(
-                width: width,
-                height: height,
-                alignment: Alignment.center,
-                child: Icon(
-                  FontAwesomeIcons.image,
-                  size: 36.0,
+        Hero(
+          tag: Key(eventView.name),
+          child: CachedNetworkImage(
+            /// Image
+            imageUrl: eventView.coverImageUrl,
+            fit: BoxFit.cover,
+            height: height,
+            width: width,
+            placeholder: (_, __) => Container(
+                  width: width,
+                  height: height,
+                  alignment: Alignment.center,
+                  child: CircularProgressIndicator(),
                 ),
-              ),
+            errorWidget: (_, __, ___) => Container(
+                  width: width,
+                  height: height,
+                  alignment: Alignment.center,
+                  child: Icon(
+                    FontAwesomeIcons.image,
+                    size: 36.0,
+                  ),
+                ),
+          ),
         ),
         Container(
           /// Dark Overlay
@@ -74,22 +79,12 @@ class EventCard extends StatelessWidget {
           height: height,
           width: width,
         ),
-        FlatButton.icon(
-          /// Number of stars
-          icon: Icon(
-            FontAwesomeIcons.mapPin,
-            color: eventView.iLiked ? Colors.red : Colors.white,
-          ),
-          label: Text(
-            "${eventView.stars}",
-            style: TextStyle(
-              color: eventView.iLiked ? Colors.red : Colors.white,
-            ),
-          ),
-          onPressed: () {
-            Scaffold.of(context).openEndDrawer();
-          },
-        ),
+        InterestedPin(
+          eventView.iLiked,
+          selectedText: "${eventView.stars}",
+          unselectedText: "${eventView.stars}",
+          onPressed: () {},
+        )
       ],
     );
   }
@@ -135,13 +130,13 @@ class EventCard extends StatelessWidget {
   }
 
   void _handleEventCardOnTap(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (_) => Provider<EventView>.value(
-            value: eventView,
-            child: EventPage(),
-          ),
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => Provider<EventView>.value(
+              value: eventView,
+              child: EventPage(),
+            ),
+      ),
     );
   }
 }

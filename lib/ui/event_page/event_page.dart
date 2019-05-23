@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:events/ui/event_page/event_description.dart';
 import 'package:events/ui/event_page/event_details.dart';
+import 'package:events/ui/event_page/interested_pin.dart';
 import 'package:events/views/event.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,18 +10,35 @@ import 'package:provider/provider.dart';
 class EventPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Card(
-        child: DefaultTabController(
-          length: 2,
-          initialIndex: 0,
-          child: NestedScrollView(
-            headerSliverBuilder: (_, __) => [_buildHeaderSliver(context)],
-            body: TabBarView(
-              children: [EventDetails(), EventDescription()],
-            ),
+    return Scaffold(
+      body: DefaultTabController(
+        length: 2,
+        initialIndex: 0,
+        child: NestedScrollView(
+          headerSliverBuilder: (_, __) => [_buildHeaderSliver(context)],
+          body: TabBarView(
+            children: [EventDetails(), EventDescription()],
           ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(FontAwesomeIcons.share),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Theme.of(context).primaryColor,
+        clipBehavior: Clip.antiAlias,
+        shape: CircularNotchedRectangle(),
+        child: Row(
+          children: <Widget>[
+            InterestedPin(
+              Provider.of<EventView>(context).iLiked,
+              selectedText: "Unmark",
+              unselectedText: "Mark",
+              onPressed: () {},
+            ),
+          ],
         ),
       ),
     );
@@ -35,24 +53,27 @@ class EventPage extends StatelessWidget {
           Tab(child: Text("Descriptions")),
         ],
       ),
-      expandedHeight: 250.0,
+      expandedHeight: MediaQuery.of(context).size.height * 0.35,
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
         background: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            CachedNetworkImage(
-              imageUrl: Provider.of<EventView>(context).coverImageUrl,
-              fit: BoxFit.cover,
-              placeholder: (_, __) =>
-                  Center(child: CircularProgressIndicator()),
-              errorWidget: (_, __, ___) => Center(
-                    child: Icon(
-                      FontAwesomeIcons.image,
-                      size: 36.0,
-                      color: Colors.white,
+            Hero(
+              tag: Key(Provider.of<EventView>(context).name),
+              child: CachedNetworkImage(
+                imageUrl: Provider.of<EventView>(context).coverImageUrl,
+                fit: BoxFit.cover,
+                placeholder: (_, __) =>
+                    Center(child: CircularProgressIndicator()),
+                errorWidget: (_, __, ___) => Center(
+                      child: Icon(
+                        FontAwesomeIcons.image,
+                        size: 36.0,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
+              ),
             ),
             Container(
               decoration: BoxDecoration(
