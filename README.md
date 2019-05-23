@@ -1,6 +1,12 @@
-# events
+# EVENTS
 
-A new Flutter project.
+Events App to subsrcibe and recieve event data.
+
+| ![Screenshot 1](readme/screenshot_0.png) | ![Screenshot 2](readme/screenshot_1.png) | ![Screenshot 3](readme/screenshot_2.png) |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| Home Page                                | Event Details Page                       | Notifications Page                       |
+
+
 
 ## Getting Started
 
@@ -15,8 +21,3 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.io/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
 
-# Add android KVM Permission
-
-```
-sudo chown sunera -R /dev/kvm
-```
