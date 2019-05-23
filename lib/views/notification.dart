@@ -4,6 +4,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 enum Action { ADD, START, END }
 
+@immutable
 abstract class NotificationView {
   final DateTime notificationTime;
   final bool isRead;
@@ -43,6 +44,7 @@ abstract class NotificationView {
   }
 }
 
+@immutable
 class AddEventNotificationView extends NotificationView {
   final String organizer;
 
@@ -65,6 +67,7 @@ class AddEventNotificationView extends NotificationView {
   String get messageStart => organizer;
 }
 
+@immutable
 abstract class EventTimeNotificationView extends NotificationView {
   final String eventName;
 
@@ -84,6 +87,7 @@ abstract class EventTimeNotificationView extends NotificationView {
   String get messageStart => eventName;
 }
 
+@immutable
 class EventStartNotificationView extends EventTimeNotificationView {
   EventStartNotificationView({
     eventName,
