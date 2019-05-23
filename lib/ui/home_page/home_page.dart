@@ -2,6 +2,7 @@ import 'package:events/theme/theme_controller.dart';
 import 'package:events/ui/home_page/category_row.dart';
 import 'package:events/ui/home_page/drawer.dart';
 import 'package:events/ui/home_page/event_card.dart';
+import 'package:events/ui/home_page/end_drawer.dart';
 import 'package:events/views/event.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -34,6 +35,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
       drawer: AppDrawer(),
+      endDrawer: InterestedUsersDrawer(),
     );
   }
 }

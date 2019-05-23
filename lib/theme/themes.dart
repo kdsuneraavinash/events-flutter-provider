@@ -6,10 +6,8 @@ class PrefferedTheme {
   final Color primaryColor;
   final Color accentColor;
   final Color iconColor;
+  final Color eventCardTimeTextColor;
   final Brightness brightness;
-  final TextStyle eventCardTitleTextTheme;
-  final TextStyle eventCardSubtitleTextTheme;
-  final TextStyle eventCardTimeTextTheme;
   final Theme theme;
 
   PrefferedTheme({
@@ -17,10 +15,8 @@ class PrefferedTheme {
     this.primaryColor,
     this.accentColor,
     this.iconColor,
+    this.eventCardTimeTextColor,
     this.brightness,
-    this.eventCardTitleTextTheme,
-    this.eventCardSubtitleTextTheme,
-    this.eventCardTimeTextTheme,
     this.theme,
   });
 }
@@ -33,10 +29,7 @@ class DefaultTheme extends PrefferedTheme {
           accentColor: Color(0xffE03616),
           iconColor: Color(0xffE03616),
           brightness: Brightness.light,
-          eventCardTitleTextTheme: TextStyle(fontWeight: FontWeight.w800),
-          eventCardSubtitleTextTheme: TextStyle(fontWeight: FontWeight.w600),
-          eventCardTimeTextTheme:
-              TextStyle(color: Colors.white, letterSpacing: 1.0),
+          eventCardTimeTextColor: Colors.white,
         );
 }
 
@@ -48,9 +41,6 @@ class DarkTheme extends PrefferedTheme {
           accentColor: Colors.black,
           iconColor: Colors.white,
           brightness: Brightness.dark,
-          eventCardTitleTextTheme: TextStyle(fontWeight: FontWeight.w800),
-          eventCardSubtitleTextTheme: TextStyle(fontWeight: FontWeight.w600),
-          eventCardTimeTextTheme:
-              TextStyle(color: Colors.white, letterSpacing: 1.0),
+          eventCardTimeTextColor: Colors.white,
         );
 }

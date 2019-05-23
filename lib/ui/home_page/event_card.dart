@@ -86,7 +86,9 @@ class EventCard extends StatelessWidget {
               color: eventView.iLiked ? Colors.red : Colors.white,
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Scaffold.of(context).openEndDrawer();
+          },
         ),
       ],
     );
@@ -103,15 +105,17 @@ class EventCard extends StatelessWidget {
             Icons.timer,
             color: Provider.of<ThemeController>(context)
                 .theme
-                .eventCardTimeTextTheme
-                .color,
+                .eventCardTimeTextColor,
           ),
           SizedBox(height: 8.0, width: 8.0),
           Text(
             "Starts on ${eventView.startDate}",
             textAlign: TextAlign.end,
-            style:
-                Provider.of<ThemeController>(context).theme.eventCardTimeTextTheme,
+            style: TextStyle(
+                color: Provider.of<ThemeController>(context)
+                    .theme
+                    .eventCardTimeTextColor,
+                letterSpacing: 1.0),
           ),
         ],
       ),
@@ -122,14 +126,10 @@ class EventCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0),
       child: ListTile(
-        title: Text(eventView.name,
-            style: Provider.of<ThemeController>(context)
-                .theme
-                .eventCardTitleTextTheme),
+        title:
+            Text(eventView.name, style: TextStyle(fontWeight: FontWeight.w800)),
         subtitle: Text(eventView.organizer,
-            style: Provider.of<ThemeController>(context)
-                .theme
-                .eventCardTitleTextTheme),
+            style: TextStyle(fontWeight: FontWeight.w800)),
       ),
     );
   }
