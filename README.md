@@ -1,23 +1,26 @@
 # EVENTS
 
-Events App to subsrcibe and recieve event data.
+Events App to subscribe and receive event data.
 
 | ![Screenshot 1](readme/screenshot_0.png) | ![Screenshot 2](readme/screenshot_1.png) | ![Screenshot 3](readme/screenshot_2.png) |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | Home Page                                | Event Details Page                       | Notifications Page                       |
 
+## Checklist
 
+- [x] Add Theme handling
+- [x] Add Both mobile and tablet modes
+- [ ] Add subscribe to feed UI
 
-## Getting Started
+## Landscape/Portrait Views
 
-This project is a starting point for a Flutter application.
+| ![Capture 1](readme/events-mobile.gif) | ![Capture 1](readme/events-tablet.gif)   |
+| -------------------------------------- | -------------------------------------- |
+|Mobile View| Tablet View |
 
-A few resources to get you started if this is your first Flutter project:
+## How to Run
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter run
+```
 

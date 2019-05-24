@@ -1,4 +1,5 @@
 import 'package:events/theme/theme_controller.dart';
+import 'package:events/ui/event_page/event_page.dart';
 import 'package:events/ui/home_page/drawer.dart';
 import 'package:events/ui/home_page/event_card.dart';
 import 'package:events/ui/home_page/end_drawer.dart';
@@ -7,32 +8,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ThemeController themeController = Provider.of<ThemeController>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text("Events."),
         actions: <Widget>[
           IconButton(
-            onPressed: themeController.nextTheme,
+            onPressed: Provider.of<ThemeController>(context).nextTheme,
             icon: Icon(FontAwesomeIcons.palette),
           )
         ],
       ),
-      body: LiquidPullToRefresh(
-        showChildOpacityTransition: false,
-        backgroundColor: themeController.theme.pullToRefreshBallColor,
-        color: themeController.theme.pullToRefreshBackgroundColor,
-        onRefresh: () async => await Future.delayed(Duration(seconds: 3)),
-        child: ListView.builder(
-          itemBuilder: (_, index) =>
-              EventCard(eventView: EventView.fromIndex(index)),
-        ),
+      body: LayoutBuilder(
+        builder: (_, constraints) {
+          if (constraints.maxWidth < 600) {
+            return MobileHomePage();
+          } else {
+            return TabletHomePage();
+          }
+        },
       ),
       drawer: AppDrawer(),
       endDrawer: CategoryDrawer(),
@@ -90,6 +88,65 @@ class HomePageBottomAppBar extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
+    );
+  }
+}
+
+class MobileHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return EventList(
+      onTap: _handleEventCardOnTap,
+    );
+  }
+
+  void _handleEventCardOnTap(BuildContext context, EventView eventView) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => Provider<EventView>.value(
+              value: eventView,
+              child: EventPage(isMobile: true,),
+            ),
+      ),
+    );
+  }
+}
+
+class TabletHomePage extends StatefulWidget {
+  @override
+  _TabletHomePageState createState() => _TabletHomePageState();
+}
+
+class _TabletHomePageState extends State<TabletHomePage> {
+  EventView currentSelectedEvent;
+
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    return Row(
+      children: <Widget>[
+        SizedBox(
+          width: width / 2,
+          child: EventList(
+            onTap: (_, eventView) {
+              setState(() {
+                currentSelectedEvent = eventView;
+              });
+            },
+          ),
+        ),
+        VerticalDivider(color: Theme.of(context).primaryColor, width: 0.0),
+        SizedBox(
+          width: width / 2,
+          child: currentSelectedEvent == null
+              ? Center(child: Icon(FontAwesomeIcons.box, size: 32))
+              : Provider<EventView>.value(
+                  value: currentSelectedEvent,
+                  child: EventPage(isMobile: false),
+                ),
+        ),
+      ],
     );
   }
 }

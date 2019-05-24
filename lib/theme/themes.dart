@@ -12,6 +12,9 @@ class PrefferedTheme {
   final Color pullToRefreshBackgroundColor;
   final Brightness brightness;
 
+  Color get normalTextColor =>
+      this.brightness == Brightness.light ? Colors.black : Colors.white;
+
   PrefferedTheme({
     @required this.id,
     @required this.primaryColor,

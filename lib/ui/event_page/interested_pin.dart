@@ -29,9 +29,7 @@ class _InterestedPinState extends State<InterestedPin> {
       ),
       label: Text(
         selected ? widget.selectedText : widget.unselectedText,
-        style: TextStyle(
-          color: Colors.white,
-        ),
+        style: TextStyle(color: Colors.white),
       ),
       onPressed: () {
         setState(() {
