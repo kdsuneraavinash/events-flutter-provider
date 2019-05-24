@@ -18,6 +18,7 @@ class AppDrawer extends StatelessWidget {
             title: "Notifications",
             subtitle: "View Notifications",
             onPressed: () {
+              Navigator.pop(context);
               Navigator.push(
                   context,
                   MaterialPageRoute(

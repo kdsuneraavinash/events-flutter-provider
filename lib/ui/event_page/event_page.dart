@@ -6,10 +6,13 @@ import 'package:events/views/event.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:share/share.dart';
 
 class EventPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    EventView eventView = Provider.of<EventView>(context);
+
     return Scaffold(
       body: DefaultTabController(
         length: 2,
@@ -23,17 +26,18 @@ class EventPage extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(FontAwesomeIcons.share),
+        onPressed: () => Share.share("Check out this awesome event:\n"
+            "${eventView.name}\n"
+            "on ${eventView.startDate}\n"
+            "in ${eventView.venue}"),
+        child: Icon(FontAwesomeIcons.share), 
       ),
+      extendBody: true,
       bottomNavigationBar: BottomAppBar(
-        color: Theme.of(context).primaryColor,
-        clipBehavior: Clip.antiAlias,
-        shape: CircularNotchedRectangle(),
         child: Row(
           children: <Widget>[
             InterestedPin(
-              Provider.of<EventView>(context).iLiked,
+              eventView.iLiked,
               selectedText: "Unmark",
               unselectedText: "Mark",
               onPressed: () {},
