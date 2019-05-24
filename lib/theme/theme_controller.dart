@@ -6,7 +6,12 @@ class ThemeController extends ChangeNotifier {
     index = 0;
   }
 
-  final List<PrefferedTheme> themes = [DefaultTheme(), DarkTheme()];
+  final List<PrefferedTheme> themes = [
+    DefaultTheme(),
+    DarkTheme(),
+    PinkTheme(),
+    BlueTheme(),
+  ];
   int index;
 
   PrefferedTheme get theme => themes[index];

@@ -23,13 +23,14 @@ class _InterestedPinState extends State<InterestedPin> {
   Widget build(BuildContext context) {
     return FlatButton.icon(
       icon: Icon(
-        FontAwesomeIcons.mapPin,
-        color: selected ? Colors.red : Colors.white,
+        selected ? FontAwesomeIcons.solidThumbsUp : FontAwesomeIcons.thumbsUp,
+        color: Colors.white,
+        size: 20,
       ),
       label: Text(
         selected ? widget.selectedText : widget.unselectedText,
         style: TextStyle(
-          color: selected ? Colors.red : Colors.white,
+          color: Colors.white,
         ),
       ),
       onPressed: () {

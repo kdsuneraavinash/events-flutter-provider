@@ -8,6 +8,8 @@ class PrefferedTheme {
   final Color iconColor;
   final Color eventCardTimeTextColor;
   final Color textOnPrimaryColorTextColor;
+  final Color pullToRefreshBallColor;
+  final Color pullToRefreshBackgroundColor;
   final Brightness brightness;
 
   PrefferedTheme({
@@ -16,6 +18,8 @@ class PrefferedTheme {
     @required this.accentColor,
     @required this.iconColor,
     @required this.eventCardTimeTextColor,
+    @required this.pullToRefreshBallColor,
+    @required this.pullToRefreshBackgroundColor,
     @required this.textOnPrimaryColorTextColor,
     @required this.brightness,
   });
@@ -34,6 +38,7 @@ class PrefferedTheme {
       );
 }
 
+/// #58355E #E03616
 class DefaultTheme extends PrefferedTheme {
   DefaultTheme()
       : super(
@@ -43,10 +48,45 @@ class DefaultTheme extends PrefferedTheme {
           iconColor: Color(0xffE03616),
           brightness: Brightness.light,
           eventCardTimeTextColor: Colors.white,
+          pullToRefreshBallColor: Color(0xffE03616),
+          pullToRefreshBackgroundColor: Colors.white,
           textOnPrimaryColorTextColor: Colors.white,
         );
 }
 
+/// #AD1457 #AB47BC
+class PinkTheme extends PrefferedTheme {
+  PinkTheme()
+      : super(
+          id: "pink_theme",
+          primaryColor: Color(0xffAD1457),
+          accentColor: Color(0xffAB47BC),
+          iconColor: Color(0xffAB47BC),
+          brightness: Brightness.light,
+          eventCardTimeTextColor: Colors.white,
+          pullToRefreshBallColor: Colors.pink,
+          pullToRefreshBackgroundColor: Colors.pink[100],
+          textOnPrimaryColorTextColor: Colors.white,
+        );
+}
+
+/// #1A237E #1E88E5
+class BlueTheme extends PrefferedTheme {
+  BlueTheme()
+      : super(
+          id: "blue_theme",
+          primaryColor: Color(0xff1A237E),
+          accentColor: Color(0xff1E88E5),
+          iconColor: Color(0xff00ACC1),
+          brightness: Brightness.light,
+          eventCardTimeTextColor: Colors.white,
+          pullToRefreshBallColor: Colors.white,
+          pullToRefreshBackgroundColor: Color(0xff3F51B5),
+          textOnPrimaryColorTextColor: Colors.white,
+        );
+}
+
+/// #000000 #000000
 class DarkTheme extends PrefferedTheme {
   DarkTheme()
       : super(
@@ -56,6 +96,8 @@ class DarkTheme extends PrefferedTheme {
           iconColor: Colors.white,
           brightness: Brightness.dark,
           eventCardTimeTextColor: Colors.white,
+          pullToRefreshBallColor: Colors.white,
+          pullToRefreshBackgroundColor: Colors.black,
           textOnPrimaryColorTextColor: Colors.white,
         );
 }

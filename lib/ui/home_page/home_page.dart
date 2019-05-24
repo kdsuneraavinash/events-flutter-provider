@@ -7,24 +7,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController = Provider.of<ThemeController>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text("Events."),
         actions: <Widget>[
           IconButton(
-            onPressed: Provider.of<ThemeController>(context).nextTheme,
+            onPressed: themeController.nextTheme,
             icon: Icon(FontAwesomeIcons.palette),
           )
         ],
       ),
-      body: ListView.builder(
-        itemBuilder: (_, index) =>
-            EventCard(eventView: EventView.fromIndex(index)),
+      body: LiquidPullToRefresh(
+        showChildOpacityTransition: false,
+        backgroundColor: themeController.theme.pullToRefreshBallColor,
+        color: themeController.theme.pullToRefreshBackgroundColor,
+        onRefresh: () async => await Future.delayed(Duration(seconds: 3)),
+        child: ListView.builder(
+          itemBuilder: (_, index) =>
+              EventCard(eventView: EventView.fromIndex(index)),
+        ),
       ),
       drawer: AppDrawer(),
       endDrawer: CategoryDrawer(),
@@ -48,13 +56,14 @@ class HomePageBottomAppBar extends StatelessWidget {
         children: <Widget>[
           _buildBottomButton(
             context: context,
-            icon: FontAwesomeIcons.bell,
-            label: "Notifications",
+            icon: FontAwesomeIcons.plusSquare,
+            label: "Add Event",
+            onPressed: () {},
           ),
           _buildBottomButton(
             context: context,
             icon: FontAwesomeIcons.list,
-            label: "Categories",
+            label: "Fliter",
             onPressed: () => Scaffold.of(context).openEndDrawer(),
           )
         ],

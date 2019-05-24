@@ -33,6 +33,13 @@ class AppDrawer extends StatelessWidget {
             subtitle: "Add subscriptions for categories",
             onPressed: () {},
           ),
+          _buildDrawerListItem(
+            context: context,
+            icon: FontAwesomeIcons.cogs,
+            title: "Settings",
+            subtitle: "Customize the app",
+            onPressed: () {},
+          ),
         ],
       ),
     );
