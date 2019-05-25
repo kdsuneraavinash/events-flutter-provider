@@ -1,5 +1,5 @@
+import 'package:events/ui/event_list/event_card.dart';
 import 'package:events/ui/event_page/event_page.dart';
-import 'package:events/ui/home_page/event_card.dart';
 import 'package:events/views/event.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
