@@ -1,5 +1,5 @@
 import 'package:events/theme/theme_controller.dart';
-import 'package:events/ui/home_page/home_page.dart';
+import 'package:events/ui/home_page/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

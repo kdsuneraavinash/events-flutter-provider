@@ -1,4 +1,5 @@
 import 'package:events/views/event.dart';
+import 'package:flutter/widgets.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,5 +17,13 @@ class Components {
         "${eventView.name}\n"
         "on ${eventView.startDate}\n"
         "in ${eventView.venue}");
+  }
+
+  static bool isMobileDevice(BoxConstraints constraints) {
+    return constraints.maxWidth < 600;
+  }
+
+  static bool isMobileDeviceFromContext(BuildContext context) {
+    return MediaQuery.of(context).size.width < 600;
   }
 }
