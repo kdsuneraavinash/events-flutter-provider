@@ -105,7 +105,9 @@ class MobileHomePage extends StatelessWidget {
       MaterialPageRoute(
         builder: (_) => Provider<EventView>.value(
               value: eventView,
-              child: EventPage(isMobile: true,),
+              child: EventPage(
+                isMobile: true,
+              ),
             ),
       ),
     );
@@ -119,6 +121,7 @@ class TabletHomePage extends StatefulWidget {
 
 class _TabletHomePageState extends State<TabletHomePage> {
   EventView currentSelectedEvent;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -129,24 +132,33 @@ class _TabletHomePageState extends State<TabletHomePage> {
         SizedBox(
           width: width / 2,
           child: EventList(
-            onTap: (_, eventView) {
-              setState(() {
-                currentSelectedEvent = eventView;
-              });
-            },
+            onTap: _waitAndLoadEvent,
           ),
         ),
         VerticalDivider(color: Theme.of(context).primaryColor, width: 0.0),
         SizedBox(
           width: width / 2,
-          child: currentSelectedEvent == null
-              ? Center(child: Icon(FontAwesomeIcons.box, size: 32))
-              : Provider<EventView>.value(
-                  value: currentSelectedEvent,
-                  child: EventPage(isMobile: false),
-                ),
+          child: isLoading
+              ? Center(child: CircularProgressIndicator())
+              : currentSelectedEvent == null
+                  ? Center(child: Icon(FontAwesomeIcons.box, size: 32))
+                  : Provider<EventView>.value(
+                      value: currentSelectedEvent,
+                      child: EventPage(isMobile: false),
+                    ),
         ),
       ],
     );
+  }
+
+  void _waitAndLoadEvent(BuildContext context, EventView eventView) async {
+    setState(() {
+      isLoading = true;
+    });
+    await Future.delayed(Duration(seconds: 1));
+    setState(() {
+      isLoading = false;
+      currentSelectedEvent = eventView;
+    });
   }
 }
