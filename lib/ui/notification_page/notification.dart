@@ -23,14 +23,14 @@ class NotificationItem extends StatelessWidget {
         text: TextSpan(
           style: Theme.of(context).textTheme.subhead,
           children: <TextSpan>[
-            _buildEmphasizedText(context, notificationView.messageStart),
+            _emphasizedTextWidget(context, notificationView.messageStart),
             TextSpan(
               text: notificationView.messageMiddle,
               style: TextStyle(
                 color: notificationView.isRead ? Colors.grey : null,
               ),
             ),
-            _buildEmphasizedText(context, notificationView.messageEnd),
+            _emphasizedTextWidget(context, notificationView.messageEnd),
           ],
         ),
       ),
@@ -38,7 +38,7 @@ class NotificationItem extends StatelessWidget {
     );
   }
 
-  TextSpan _buildEmphasizedText(BuildContext context, String text) {
+  TextSpan _emphasizedTextWidget(BuildContext context, String text) {
     return TextSpan(
       text: text,
       style: TextStyle(

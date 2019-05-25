@@ -1,6 +1,6 @@
 import 'package:events/components/components.dart';
 import 'package:events/theme/theme_controller.dart';
-import 'package:events/ui/event_page/interested_pin.dart';
+import 'package:events/components/interested_pin.dart';
 import 'package:events/views/event.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

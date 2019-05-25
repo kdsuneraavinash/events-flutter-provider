@@ -16,37 +16,37 @@ class EventDetails extends StatelessWidget {
     EventView eventView = Provider.of<EventView>(context);
 
     return [
-      _buildListTile(
+      _listTileWidget(
         context: context,
         title: eventView.name,
         subtitle: "Event Name",
         icon: FontAwesomeIcons.font,
       ),
-      _buildListTile(
+      _listTileWidget(
         context: context,
         title: eventView.organizer,
         subtitle: "Organizers",
         icon: FontAwesomeIcons.users,
       ),
-      _buildListTile(
+      _listTileWidget(
         context: context,
         title: eventView.venue,
         subtitle: "Venue",
         icon: FontAwesomeIcons.mapMarked,
       ),
-      _buildListTile(
+      _listTileWidget(
         context: context,
         title: "Starts on ${eventView.startDate}",
         subtitle: "Start Date",
         icon: FontAwesomeIcons.calendar,
       ),
-      _buildListTile(
+      _listTileWidget(
         context: context,
         title: "Ends on ${eventView.endDate}",
         subtitle: "End Date",
         icon: FontAwesomeIcons.calendar,
       ),
-      _buildListTile(
+      _listTileWidget(
         context: context,
         title: eventView.isAllDay
             ? "This is an All Day Event"
@@ -57,7 +57,7 @@ class EventDetails extends StatelessWidget {
     ];
   }
 
-  Widget _buildListTile(
+  Widget _listTileWidget(
       {BuildContext context, String title, String subtitle, IconData icon}) {
     return ListTile(
       title: Text(title),

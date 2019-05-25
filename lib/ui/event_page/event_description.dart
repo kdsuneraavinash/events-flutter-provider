@@ -18,6 +18,7 @@ class EventDescription extends StatelessWidget {
             style: TextStyle(fontSize: 16.0, letterSpacing: 0.2),
           ),
         ),
+        SizedBox(height: 50)
       ],
     );
   }
