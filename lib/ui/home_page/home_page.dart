@@ -1,11 +1,12 @@
 import 'package:events/components/components.dart';
-import 'package:events/theme/theme_controller.dart';
+import 'package:events/logic/event/event_controller.dart';
+import 'package:events/logic/theme/theme_controller.dart';
 import 'package:events/ui/event_list/event_list.dart';
 import 'package:events/ui/event_page/event_page.dart';
 import 'package:events/ui/home_page/drawer.dart';
 import 'package:events/ui/home_page/end_drawer.dart';
 import 'package:events/ui/home_page/bottom_app_bar.dart';
-import 'package:events/views/event.dart';
+import 'package:events/logic/event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -25,10 +26,13 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: LayoutBuilder(
-        builder: (_, constraints) => Components.isMobileDevice(constraints)
-            ? MobileHomePage()
-            : TabletHomePage(),
+      body: ChangeNotifierProvider(
+        builder: (_) => EventViewController.fromLocalFile(),
+        child: LayoutBuilder(
+          builder: (_, constraints) => Components.isMobileDevice(constraints)
+              ? MobileHomePage()
+              : TabletHomePage(),
+        ),
       ),
       drawer: AppDrawer(),
       endDrawer: CategoryDrawer(),

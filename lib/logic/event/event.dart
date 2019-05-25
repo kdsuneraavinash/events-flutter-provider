@@ -39,6 +39,23 @@ class EventView {
       this.coverImageUrl,
       this.iLiked});
 
+  factory EventView.fromMap(Map<String, dynamic> map) {
+    return EventView(
+      name: map['name'],
+      organizer: map['organizer'],
+      venue: map['venue'],
+      description: map['description'],
+      startDateTime: DateTime.parse(map['startDateTime']),
+      endDateTime: DateTime.parse(map['endDateTime']),
+      startMomentTime: DateTime.parse(map['startMomentTime']),
+      endMomentTime: DateTime.parse(map['endMomentTime']),
+      isAllDay: map['isAllDay'],
+      stars: map['stars'],
+      coverImageUrl: map['coverImageUrl'],
+      iLiked: map['iLiked'],
+    );
+  }
+
   factory EventView.fromIndex(int index) {
     return EventView(
       name: "Random Event ${index + 1}",
@@ -53,13 +70,13 @@ class EventView {
           "Fusce eleifend ipsum nec aliquam fermentum. Vivamus egestas imperdiet "
           "felis eget pharetra. Nam non tincidunt arcu, quis rutrum risus. "
           "Pellentesque ultricies enim sit amet accumsan feugiat. Curabitur "
-          "ut eros in elit ultricies pulvinar. Nullam molestie felis vitae dolor "
+          "ut eros in elit ultricies pulvinar. Nuldlam molestie felis vitae dolor "
           "congue, sed auctor urna scelerisque.\n\nAenean aliquet, massa ac accumsan "
           "fringilla, sem arcu sagittis augue, eu aliquam purus dui sit amet felis. "
           "Proin sed quam nec orci elementum egestas nec at dui. Ut sit amet urna "
           "fringilla, posuere eros sit amet, consequat magna. Morbi elementum, nunc "
           "congue tincidunt scelerisque, magna quam cursus erat, dignissim iaculis "
-          "ex justo eu justo. Nullam lobortis lacus at velit aliquam, quis tempor "
+          "ex justo eu justo. Nudllam lobortis lacus at velit aliquam, quis tempor "
           "mauris pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. "
           "Aliquam condimentum risus at libero placerat ultricies. Nam dictum efficitur "
           "neque, vel tempus orci pulvinar vitae. Cras eu nibh tortor. Morbi elit quam, "

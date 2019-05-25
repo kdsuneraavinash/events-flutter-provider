@@ -1,4 +1,4 @@
-import 'package:events/theme/themes.dart';
+import 'package:events/logic/theme/themes.dart';
 import 'package:flutter/material.dart';
 
 class ThemeController extends ChangeNotifier {

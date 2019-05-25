@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:events/views/event.dart';
+import 'package:events/logic/event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share/share.dart';
@@ -57,8 +57,11 @@ class Components {
     );
   }
 
-  static bottomToTopLinearGradientDecoration(List<Color> colors) {
+  static bottomToTopLinearGradientDecoration(
+      {List<Color> colors, double width, double height}) {
     return Container(
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: colors,

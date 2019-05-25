@@ -1,7 +1,7 @@
 import 'package:events/components/components.dart';
-import 'package:events/theme/theme_controller.dart';
+import 'package:events/logic/theme/theme_controller.dart';
 import 'package:events/components/interested_pin.dart';
-import 'package:events/views/event.dart';
+import 'package:events/logic/event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -52,7 +52,9 @@ class EventCard extends StatelessWidget {
           ),
         ),
         Components.bottomToTopLinearGradientDecoration(
-            [Color(0x66000000), Color(0x00000000)]),
+            colors: [Color(0x66000000), Color(0x66000000)],
+            width: width,
+            height: height),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[

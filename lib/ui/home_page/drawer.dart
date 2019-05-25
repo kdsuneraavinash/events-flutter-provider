@@ -1,5 +1,5 @@
 import 'package:events/components/components.dart';
-import 'package:events/theme/theme_controller.dart';
+import 'package:events/logic/theme/theme_controller.dart';
 import 'package:events/ui/notification_page/notification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

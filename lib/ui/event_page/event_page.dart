@@ -1,9 +1,9 @@
 import 'package:events/components/components.dart';
-import 'package:events/theme/theme_controller.dart';
+import 'package:events/logic/theme/theme_controller.dart';
 import 'package:events/ui/event_page/event_description.dart';
 import 'package:events/ui/event_page/event_details.dart';
 import 'package:events/components/interested_pin.dart';
-import 'package:events/views/event.dart';
+import 'package:events/logic/event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -79,8 +79,11 @@ class MobileEventPage extends EventPage {
               child: Components.cachedNetworkImageWidget(
                   imageUrl: Provider.of<EventView>(context).coverImageUrl),
             ),
-            Components.bottomToTopLinearGradientDecoration(
-                [Color(0xff000000), Color(0x00000000), Color(0x88000000)])
+            Components.bottomToTopLinearGradientDecoration(colors: [
+              Color(0xff000000),
+              Color(0x00000000),
+              Color(0x88000000)
+            ])
           ],
         ),
         collapseMode: CollapseMode.parallax,

@@ -1,5 +1,5 @@
 import 'package:events/components/components.dart';
-import 'package:events/views/event.dart';
+import 'package:events/logic/event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
