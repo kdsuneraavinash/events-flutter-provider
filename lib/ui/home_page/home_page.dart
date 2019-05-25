@@ -1,6 +1,6 @@
 import 'package:events/components/components.dart';
 import 'package:events/theme/theme_controller.dart';
-import 'package:events/ui/event_list/event_card.dart';
+import 'package:events/ui/event_list/event_list.dart';
 import 'package:events/ui/event_page/event_page.dart';
 import 'package:events/ui/home_page/drawer.dart';
 import 'package:events/ui/home_page/end_drawer.dart';

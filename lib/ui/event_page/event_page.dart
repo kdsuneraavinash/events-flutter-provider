@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:events/components/components.dart';
 import 'package:events/theme/theme_controller.dart';
 import 'package:events/ui/event_page/event_description.dart';
@@ -77,33 +76,11 @@ class MobileEventPage extends EventPage {
           children: <Widget>[
             Hero(
               tag: Key(Provider.of<EventView>(context).name),
-              child: CachedNetworkImage(
-                imageUrl: Provider.of<EventView>(context).coverImageUrl,
-                fit: BoxFit.cover,
-                placeholder: (_, __) =>
-                    Center(child: CircularProgressIndicator()),
-                errorWidget: (_, __, ___) => Center(
-                      child: Icon(
-                        FontAwesomeIcons.image,
-                        size: 36.0,
-                        color: Colors.white,
-                      ),
-                    ),
-              ),
+              child: Components.cachedNetworkImageWidget(
+                  imageUrl: Provider.of<EventView>(context).coverImageUrl),
             ),
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xff000000),
-                    Color(0x00000000),
-                    Color(0x88000000)
-                  ],
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                ),
-              ),
-            ),
+            Components.bottomToTopLinearGradientDecoration(
+                [Color(0xff000000), Color(0x00000000), Color(0x88000000)])
           ],
         ),
         collapseMode: CollapseMode.parallax,

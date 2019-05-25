@@ -1,3 +1,4 @@
+import 'package:events/components/components.dart';
 import 'package:events/theme/theme_controller.dart';
 import 'package:events/ui/notification_page/notification_page.dart';
 import 'package:flutter/material.dart';
@@ -11,41 +12,50 @@ class AppDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: <Widget>[
-          _buildDrawerHeader(context: context),
-          _buildDrawerListItem(
-            context: context,
-            icon: FontAwesomeIcons.bell,
-            title: "Notifications",
-            subtitle: "View Notifications",
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => NotificationPage(),
-                  ));
-            },
-          ),
-          _buildDrawerListItem(
-            context: context,
-            icon: FontAwesomeIcons.checkCircle,
-            title: "Add Subscriptions",
-            subtitle: "Add subscriptions for categories",
-            onPressed: () {},
-          ),
-          _buildDrawerListItem(
-            context: context,
-            icon: FontAwesomeIcons.cogs,
-            title: "Settings",
-            subtitle: "Customize the app",
-            onPressed: () {},
-          ),
+          _drawerHeaderWidget(context: context),
+          Expanded(
+            child:ScrollConfiguration(
+  behavior: NoAnimationScrollBehaviour(),
+  child: ListView(
+              children: <Widget>[
+                _drawerListItemWidget(
+                  context: context,
+                  icon: FontAwesomeIcons.bell,
+                  title: "Notifications",
+                  subtitle: "View Notifications",
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => NotificationPage(),
+                        ));
+                  },
+                ),
+                _drawerListItemWidget(
+                  context: context,
+                  icon: FontAwesomeIcons.checkCircle,
+                  title: "Add Subscriptions",
+                  subtitle: "Add subscriptions for categories",
+                  onPressed: () {},
+                ),
+                _drawerListItemWidget(
+                  context: context,
+                  icon: FontAwesomeIcons.cogs,
+                  title: "Settings",
+                  subtitle: "Customize the app",
+                  onPressed: () {},
+                ),
+              ],
+            ),
+) 
+          )
         ],
       ),
     );
   }
 
-  Widget _buildDrawerListItem(
+  Widget _drawerListItemWidget(
       {BuildContext context,
       IconData icon,
       String title,
@@ -60,7 +70,7 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  Widget _buildDrawerHeader({BuildContext context}) {
+  Widget _drawerHeaderWidget({BuildContext context}) {
     return UserAccountsDrawerHeader(
       accountEmail: Text("johnDoe@alljohns.com"),
       accountName: Text("John Doe"),
