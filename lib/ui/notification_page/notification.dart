@@ -1,7 +1,7 @@
-import 'package:events/logic/theme/theme_controller.dart';
+import 'package:events/logic/theme.dart';
 import 'package:events/views/notification.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class NotificationItem extends StatelessWidget {
   final NotificationView notificationView;
@@ -45,7 +45,7 @@ class NotificationItem extends StatelessWidget {
         fontWeight: FontWeight.w800,
         color: notificationView.isRead
             ? Theme.of(context).disabledColor
-            : Provider.of<ThemeController>(context).theme.iconColor,
+            : ThemeProvider.optionsOf<ThemeOptions>(context).iconColor,
       ),
     );
   }

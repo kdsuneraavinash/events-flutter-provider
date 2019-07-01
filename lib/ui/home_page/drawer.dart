@@ -1,10 +1,10 @@
 import 'package:events/components/components.dart';
-import 'package:events/logic/theme/theme_controller.dart';
+import 'package:events/logic/theme.dart';
 import 'package:events/ui/notification_page/notification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:provider/provider.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -14,9 +14,9 @@ class AppDrawer extends StatelessWidget {
         children: <Widget>[
           _drawerHeaderWidget(context: context),
           Expanded(
-            child:ScrollConfiguration(
-  behavior: NoAnimationScrollBehaviour(),
-  child: ListView(
+              child: ScrollConfiguration(
+            behavior: NoAnimationScrollBehaviour(),
+            child: ListView(
               children: <Widget>[
                 _drawerListItemWidget(
                   context: context,
@@ -28,7 +28,9 @@ class AppDrawer extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => NotificationPage(),
+                          builder: (_) => ThemeConsumer(
+                                child: NotificationPage(),
+                              ),
                         ));
                   },
                 ),
@@ -48,8 +50,7 @@ class AppDrawer extends StatelessWidget {
                 ),
               ],
             ),
-) 
-          )
+          ))
         ],
       ),
     );
@@ -62,8 +63,10 @@ class AppDrawer extends StatelessWidget {
       String subtitle,
       VoidCallback onPressed}) {
     return ListTile(
-      leading: Icon(icon,
-          color: Provider.of<ThemeController>(context).theme.iconColor),
+      leading: Icon(
+        icon,
+        color: ThemeProvider.optionsOf<ThemeOptions>(context).iconColor,
+      ),
       title: Text(title),
       subtitle: Text(subtitle),
       onTap: onPressed,

@@ -1,6 +1,5 @@
 import 'package:events/components/components.dart';
 import 'package:events/logic/event/event_controller.dart';
-import 'package:events/logic/theme/theme_controller.dart';
 import 'package:events/ui/event_list/event_list.dart';
 import 'package:events/ui/event_page/event_page.dart';
 import 'package:events/ui/home_page/drawer.dart';
@@ -11,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -20,10 +20,19 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         title: Text("Events."),
         actions: <Widget>[
-          IconButton(
-            onPressed: Provider.of<ThemeController>(context).nextTheme,
-            icon: Icon(FontAwesomeIcons.palette),
-          ),
+          Builder(
+            builder: (context) => IconButton(
+                  onPressed: () => showDialog(
+                        context: context,
+                        builder: (_) => ThemeConsumer(
+                                child: ThemeDialog(
+                              selectedOverlayColor:
+                                  Colors.white.withAlpha(0x22),
+                            )),
+                      ),
+                  icon: Icon(FontAwesomeIcons.palette),
+                ),
+          )
         ],
       ),
       body: ChangeNotifierProvider(
@@ -65,7 +74,7 @@ class MobileHomePage extends StatelessWidget {
       MaterialPageRoute(
         builder: (_) => Provider<EventView>.value(
               value: eventView,
-              child: MobileEventPage(),
+              child: ThemeConsumer(child: MobileEventPage()),
             ),
       ),
     );

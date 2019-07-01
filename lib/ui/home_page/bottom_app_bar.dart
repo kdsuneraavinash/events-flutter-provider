@@ -1,7 +1,7 @@
-import 'package:events/logic/theme/theme_controller.dart';
+import 'package:events/logic/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class HomePageBottomAppBar extends StatelessWidget {
   @override
@@ -33,8 +33,8 @@ class HomePageBottomAppBar extends StatelessWidget {
     @required BuildContext context,
     VoidCallback onPressed,
   }) {
-    Color color =
-        Provider.of<ThemeController>(context).theme.textOnPrimaryColorTextColor;
+    Color color = ThemeProvider.optionsOf<ThemeOptions>(context)
+        .textOnPrimaryColorTextColor;
 
     return FlatButton.icon(
       icon: Icon(icon, color: color),

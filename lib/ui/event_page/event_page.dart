@@ -1,5 +1,5 @@
 import 'package:events/components/components.dart';
-import 'package:events/logic/theme/theme_controller.dart';
+import 'package:events/logic/theme.dart';
 import 'package:events/ui/event_page/event_description.dart';
 import 'package:events/ui/event_page/event_details.dart';
 import 'package:events/components/interested_pin.dart';
@@ -7,6 +7,7 @@ import 'package:events/logic/event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 abstract class EventPage extends StatelessWidget {
   const EventPage({Key key}) : super(key: key);
@@ -100,7 +101,7 @@ class TabletEventPage extends EventPage {
         children: <Widget>[
           TabBar(
             labelColor:
-                Provider.of<ThemeController>(context).theme.normalTextColor,
+                ThemeProvider.optionsOf<ThemeOptions>(context).normalTextColor,
             tabs: super.tabTitles(),
           ),
           Expanded(child: super.tabContents())

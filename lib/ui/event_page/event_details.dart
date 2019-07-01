@@ -1,8 +1,9 @@
-import 'package:events/logic/theme/theme_controller.dart';
+import 'package:events/logic/theme.dart';
 import 'package:events/logic/event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class EventDetails extends StatelessWidget {
   @override
@@ -63,7 +64,7 @@ class EventDetails extends StatelessWidget {
       title: Text(title),
       subtitle: Text(subtitle),
       leading: Icon(icon,
-          color: Provider.of<ThemeController>(context).theme.iconColor),
+          color: ThemeProvider.optionsOf<ThemeOptions>(context).iconColor),
     );
   }
 }

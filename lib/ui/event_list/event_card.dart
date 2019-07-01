@@ -1,10 +1,10 @@
 import 'package:events/components/components.dart';
-import 'package:events/logic/theme/theme_controller.dart';
+import 'package:events/logic/theme.dart';
 import 'package:events/components/interested_pin.dart';
 import 'package:events/logic/event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class EventCard extends StatelessWidget {
   final EventView eventView;
@@ -75,24 +75,24 @@ class EventCard extends StatelessWidget {
   }
 
   Widget _timeDateWidget(BuildContext context) {
-    ThemeController themeController = Provider.of<ThemeController>(context);
-
     return Container(
-      color: themeController.theme.accentColor,
+      color: Theme.of(context).accentColor,
       padding: EdgeInsets.all(4.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Icon(
             Icons.timer,
-            color: themeController.theme.eventCardTimeTextColor,
+            color: ThemeProvider.optionsOf<ThemeOptions>(context)
+                .eventCardTimeTextColor,
           ),
           SizedBox(width: 8.0),
           Text(
             "Starts on ${eventView.startDate}",
             textAlign: TextAlign.end,
             style: TextStyle(
-              color: themeController.theme.eventCardTimeTextColor,
+              color: ThemeProvider.optionsOf<ThemeOptions>(context)
+                  .eventCardTimeTextColor,
               letterSpacing: 1.0,
             ),
           ),
