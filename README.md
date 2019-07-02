@@ -1,6 +1,6 @@
 # EVENTS
 
-**Project Moved into ()[https://github.com/kdsuneraavinash/events]**
+**Project Moved into (https://github.com/kdsuneraavinash/events)[https://github.com/kdsuneraavinash/events]**
 
 Events App to subscribe and receive event data.
 
