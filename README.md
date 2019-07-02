@@ -1,5 +1,7 @@
 # EVENTS
 
+**Project Moved into ()[https://github.com/kdsuneraavinash/events]**
+
 Events App to subscribe and receive event data.
 
 | ![Screenshot 1](readme/screenshot_0.png) | ![Screenshot 2](readme/screenshot_1.png) | ![Screenshot 3](readme/screenshot_2.png) |
